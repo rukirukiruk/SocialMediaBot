@@ -1,1 +1,1 @@
-# SocialMediaBot
+The SocialMediaBot project empowers users to automate their social media presence. Through a dedicated JavaScript frontend, the project facilitates entering post details, scheduling future posts, and retrieving insightful analytics from the backend API. This tool is designed to streamline social media management by displaying scheduled posts and analytics, offering an intuitive way for users to enhance their online engagement efficiently.
