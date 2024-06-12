@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocialMediaBot Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .form-section {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+
+        .form-section h2 {
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin: 5px 0;
+        }
+
+        input, select, button {
+            padding: 10px;
+            margin: 5px 0;
+            width: 100%;
+            box-sizing: border-box; /* Ensures padding does not affect overall width */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>SocialMediaBot Interface</h1>
+
+        <!-- Create Post Section -->
+        <div class="form-section">
+            <h2>Create Post</h2>
+            <form id="create-post-form">
+                <label for="post-content">Post Content</label>
+                <textarea id="post-content" name="postContent" rows="4" required></textarea>
+
+                <label for="post-platform">Platform</label>
+                <select id="post-platform" name="postPlatform" required>
+                    <option value="">Select a platform</option>
+                    <option value="twitter">Twitter</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="instagram">Instagram</option>
+                </select>
+
+                <button type="submit">Create Post</button>
+            </form>
+        </div>
+
+        <!-- Schedule Post Section -->
+        <div class="form-section">
+            <h2>Schedule Post</h2>
+            <form id="schedule-post-form">
+                <label for="post-id">Post ID</label>
+                <input type="text" id="post-id" name="postId" required />
+
+                <label for="schedule-date">Schedule Date</label>
+                <input type="datetime-local" id="schedule-date" name="scheduleDate" required />
+
+                <button type="submit">Schedule Post</button>
+            </form>
+        </div>
+
+        <!-- View Analytics Section -->
+        <div class="form-section">
+            <h2>View Analytics</h2>
+            <form id="view-analytics-form">
+                <label for="analytics-platform">Platform</label>
+                <select id="analytics-platform" name="analyticsPlatform" required>
+                    <option value="">Select a platform</option>
+                    <option value="twitter">Twitter</option>
+                    <option value="facebook">Facebook</option>
+                    <option value="instagram">Instagram</option>
+                </select>
+
+                <label for="analytics-period">Period</label>
+                <select id="analytics-period" name="analyticsPeriod" required>
+                    <option value="">Select period</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="yearly">Yearly</option>
+                </select>
+
+                <button type="submit">View Analytics</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
