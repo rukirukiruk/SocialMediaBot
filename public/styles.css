@@ -1,0 +1,94 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  color: #1c1e21;
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.header,
+.footer {
+  background-color: #3b5998;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+}
+.main-content {
+  margin: 20px;
+}
+.post-creation {
+  background-color: white;
+  border: 1px solid #ccd0d5;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.post-creation textarea {
+  width: 100%;
+  border: 1px solid #ccd0d5;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  resize: vertical;
+}
+.post-creation button {
+  background-color: #4267b2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.post-creation button:hover {
+  background-color: #365899;
+}
+.scheduling {
+  margin: 20px 0;
+}
+.schedule-form input,
+.schedule-form select {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccd0d5;
+  border-radius: 8px;
+}
+.analytics {
+  background-color: white;
+  border: 1px solid #ccd0d5;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.analytics table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.analytics th,
+.analytics td {
+  border: 1px solid #ddd;
+  text-align: left;
+  padding: 8px;
+}
+.analytics th {
+  background-color: #f2f2f2;
+}
+@media (max-width: 768px) {
+  .post-creation,
+  .scheduling,
+  .analytics,
+  .schedule-form input,
+  .schedule-form select,
+  .post-creation textarea {
+    width: auto;
+  }
+  .schedule-form input,
+  .schedule-form select {
+    margin: 10px 0;
+  }
+}
