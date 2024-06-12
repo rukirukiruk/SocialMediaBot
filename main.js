@@ -1,12 +1,14 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
 dotenv.config();
-const BASE_URL = process.env.BASE_URL;
-const POSTS_ENDPOINT = `${BASE_URL}/posts`;
-const SCHEDULE_ENDPOINT = `${BASE_URL}/schedule`;
-const ANALYTICS_ENDPOINT = `${BASE_URL}/analytics`;
-function createPost(postDetails) {
-  axios.post(POSTS_ENDPOINT, postDetails)
+
+const BASE_API_URL = process.env.BASE_URL;
+const POSTS_API_ENDPOINT = `${BASE_API_URL}/posts`;
+const SCHEDULE_API_ENDPOINT = `${BASE_API_URL}/schedule`;
+const ANALYTICS_API_ENDPOINT = `${BASE_API_URL}/analytics`;
+
+function createNewPost(newPostDetails) {
+  axios.post(POSTS_API_ENDPOINT, newPostDetails)
     .then(response => {
       console.log('Post created successfully:', response.data);
     })
@@ -14,8 +16,9 @@ function createPost(postDetails) {
       console.error('Error creating post:', error);
     });
 }
-function schedulePost(scheduleDetails) {
-  axios.post(SCHEDULE_ENDPOINT, scheduleDetails)
+
+function scheduleNewPost(newScheduleDetails) {
+  axios.post(SCHEDULE_API_ENDPOINT, newScheduleDetails)
     .then(response => {
       console.log('Post scheduled successfully:', response.data);
     })
@@ -23,40 +26,46 @@ function schedulePost(scheduleDetails) {
       console.error('Error scheduling post:', error);
     });
 }
-function fetchPosts() {
-  axios.get(POSTS_ENDPOINT)
+
+function retrieveAllPosts() {
+  axios.get(POSTS_API_ENDPOINT)
     .then(response => {
-      const posts = response.data;
-      console.log('Fetched posts:', posts);
+      const postsData = response.data;
+      console.log('Fetched posts:', postsData);
     })
     .catch(error => {
       console.error('Error fetching posts:', error);
     });
 }
-function fetchSchedule() {
-  axios.get(SCHEDULE_ENDPOINT)
+
+function retrieveScheduledPosts() {
+  axios.get(SCHEDULE_API_ENDPOINT)
     .then(response => {
-      const schedule = response.data;
-      console.log('Fetched schedule:', schedule);
+      const scheduleData = response.data;
+      console.log('Fetched schedule:', scheduleData);
     })
     .catch(error => {
       console.error('Error fetching schedule:', error);
     });
 }
-function fetchAnalytics() {
-  axios.get(ANALYTICS_ENDPOINT)
+
+function retrievePostsAnalytics() {
+  axios.get(ANALYTICS_API_ENDPOINT)
     .then(response => {
-      const analytics = response.data;
-      console.log('Fetched analytics:', analytics);
+      const analyticsData = response.data;
+      console.log('Fetched analytics:', analyticsData);
     })
     .catch(error => {
       console.error('Error fetching analytics data:', error);
     });
 }
-let postDetails = { title: 'New Post', content: 'Hello, world!' };
-createPost(postDetails);
-let scheduleDetails = { postId: '123', date: '2023-01-01T00:00:00Z' };
-schedulePost(scheduleDetails);
-fetchPosts();
-fetchSchedule();
-fetchAnalytics();
+
+let newPostDetails = { title: 'Exciting News!', content: 'We are happy to announce...' };
+createNewPost(newPostDetails);
+
+let newScheduleDetails = { postId: 'abc123', date: '2024-01-01T00:00:00Z' };
+scheduleNewPost(newScheduleDetails);
+
+retrieveAllPosts();
+retrieveScheduledPosts();
+retrievePostsAnalytics();
