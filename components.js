@@ -1,26 +1,39 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export const PostCreationForm = ({ onPostSubmit }) => {
   const [postContent, setPostContent] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handlePostSubmit = (event) => {
     event.preventDefault();
-    onPostSubmit(postContent);
-    setPostContent('');
+    if (!postContent.trim()) {
+      setErrorMessage('Post content cannot be empty.');
+      return;
+    }
+    try {
+      onPostSubmit(postContent);
+      setPostContent('');
+      setErrorMessage('');
+    } catch (error) {
+      console.error("Failed to submit post", error);
+      setErrorMessage('Failed to submit post. Please try again.');
+    }
   };
 
   return (
-    <form onSubmit={handlePostSubmit}>
-      <textarea
-        value={postContent}
-        onChange={(event) => setPostContent(event.target.value)}
-        placeholder="What's on your mind?"
-      />
-      <button type="submit">Post</button>
-    </form>
+    <>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      <form onSubmit={handlePostSubmit}>
+        <textarea
+          value={postContent}
+          onChange={(event) => setPostContent(event.target.value)}
+          placeholder="What's on your mind?"
+        />
+        <button type="submit">Post</button>
+      </form>
+    </>
   );
 };
 
@@ -31,28 +44,46 @@ PostCreationForm.propTypes = {
 export const SchedulingForm = ({ onPostSchedule }) => {
   const [postScheduleDateTime, setPostScheduleDateTime] = useState('');
   const [scheduledPostContent, setScheduledPostContent] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleScheduleSubmit = (event) => {
     event.preventDefault();
-    onPostSchedule(scheduledPostContent, postScheduleDateTime);
-    setScheduledPostContent('');
-    setPostScheduleDateTime('');
+    if (!scheduledPostContent.trim()) {
+      setErrorMessage('Content cannot be empty.');
+      return;
+    }
+    if (!postScheduleDateTime.trim()) {
+      setErrorMessage('Please select a schedule date and time.');
+      return;
+    }
+    try {
+      onPostSchedule(scheduledPostContent, postScheduleDateTime);
+      setScheduledPostContent('');
+      setPostScheduleDateTime('');
+      setErrorMessage('');
+    } catch (error) {
+      console.error("Failed to schedule post", error);
+      setErrorMessage('Failed to schedule the post. Please try again.');
+    }
   };
 
   return (
-    <form onSubmit={handleScheduleSubmit}>
-      <textarea
-        value={scheduledPostContent}
-        onChange={(event) => setScheduledBothContent(event.target.value)}
-        placeholder="Enter post content"
-      />
-      <input
-        type="datetime-local"
-        value={postScheduleDateTime}
-        onChange={(event) => setPostScheduleDateTime(event.target.value)}
-      />
-      <button type="submit">Schedule</button>
-    </fSentForm>
+    <>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+      <form onSubmit={handleScheduleSubmit}>
+        <textarea
+          value={scheduledPostContent}
+          onChange={(event) => setScheduledPostContent(event.target.value)}
+          placeholder="Enter post content"
+        />
+        <input
+          type="datetime-local"
+          value={postScheduleDateTime}
+          onChange={(event) => setPostScheduleDateTime(event.target.value)}
+        />
+        <button type="submit">Schedule</button>
+      </form>
+    </>
   );
 };
 
@@ -84,7 +115,7 @@ AnalyticsDisplay.propTypes = {
       likes: PropTypes.number.isRequired,
       shares: PropTypes.number.isRequired,
       views: PropTypes.number.isRequired,
-      postedOn: PropTypes.instanceOf(Date).isRequired,
+: PropTypes.instanceOf(Date).isRequired,
     })
   ).isRequired,
 };
